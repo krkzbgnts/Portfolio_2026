@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arnold Kirk Bognot — IT Support / Multimedia & Technical Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12151a;
+    --bg-soft: #171b22;
+    --surface: #1c212b;
+    --surface-2: #232a36;
+    --line: #2a3140;
+    --text: #edeef0;
+    --text-muted: #8b93a1;
+    --text-dim: #5c6474;
+    --cyan: #5eead4;
+    --cyan-dim: #5eead430;
+    --coral: #ff8a65;
+    --coral-dim: #ff8a6530;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Manrope', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--cyan-dim); color:var(--text); }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:18px; height:1px;
+    background:var(--text-dim);
+    display:inline-block;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    backdrop-filter: blur(10px);
+    background: rgba(18,21,26,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1080px;
+    margin:0 auto;
+    padding:18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo-chip{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:500;
+    font-size:0.95rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--text);
+  }
+  .logo-chip .dot{
+    width:8px;height:8px;border-radius:2px;
+    background:var(--cyan);
+    box-shadow:0 0 10px var(--cyan);
+  }
+  .nav-links{
+    display:flex;
+    gap:28px;
+    font-size:0.9rem;
+    color:var(--text-muted);
+  }
+  .nav-links a{ transition:color .2s; }
+  .nav-links a:hover{ color:var(--cyan); }
+  @media (max-width:640px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:120px;
+    padding-bottom:80px;
+    position:relative;
+  }
+  .hero-grid{
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size:64px 64px;
+      opacity:0.25;
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black, transparent);
+
+      pointer-events: none;   /* Add this */
+  }
+  .terminal{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.95rem;
+    color:var(--cyan);
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:2px;
+  }
+  .terminal .prompt{ color:var(--text-dim); }
+  .caret{
+    display:inline-block;
+    width:8px; height:1.1em;
+    background:var(--cyan);
+    margin-left:4px;
+    animation: blink 1s steps(1) infinite;
+    vertical-align:text-bottom;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  h1.name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    margin-bottom:18px;
+  }
+  h1.name .last{
+    background: linear-gradient(95deg, var(--cyan), var(--coral));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .role{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(1.05rem, 2.2vw, 1.4rem);
+    color:var(--text-muted);
+    font-weight:500;
+    margin-bottom:28px;
+  }
+  .role .sep{ color:var(--text-dim); margin:0 10px; }
+  .role .build{ color:var(--cyan); }
+  .role .create{ color:var(--coral); }
+
+  .lede{
+    max-width:620px;
+    color:var(--text-muted);
+    font-size:1.02rem;
+    margin-bottom:38px;
+  }
+
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'Manrope', sans-serif;
+    font-weight:700;
+    font-size:0.92rem;
+    padding:13px 24px;
+    border-radius:8px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{
+    background:var(--cyan);
+    color:#0b1310;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px -8px var(--cyan-dim); }
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--text);
+    background:var(--surface);
+  }
+  .btn-ghost:hover{ border-color:var(--coral); color:var(--coral); transform:translateY(-2px); }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding:110px 0; border-top:1px solid var(--line); position:relative; }
+  .sec-head{ margin-bottom:56px; max-width:640px; }
+  .sec-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:clamp(1.7rem, 3.4vw, 2.4rem);
+    letter-spacing:-0.01em;
+  }
+  .sec-desc{ color:var(--text-muted); margin-top:14px; font-size:1rem; max-width:520px; }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- ABOUT ---------- */
+  .about-panel{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:36px 40px;
+    position:relative;
+    overflow:hidden;
+  }
+  .about-panel::before{
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:38px;
+    background:var(--surface-2);
+    border-bottom:1px solid var(--line);
+  }
+  .about-panel::after{
+    content:'● ● ●';
+    position:absolute; top:11px; left:16px;
+    font-size:10px; letter-spacing:6px; color:var(--text-dim);
+  }
+  .about-body{ margin-top:34px; color:var(--text-muted); font-size:1rem; max-width:680px; }
+  .about-body strong{ color:var(--text); font-weight:600; }
+  .tags{ display:flex; flex-wrap:wrap; gap:9px; margin-top:26px; }
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--text-muted);
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:20px;
+  }
+
+  /* ---------- SKILLS / CIRCUIT ---------- */
+  .circuit-wrap{ position:relative; }
+  .circuit-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    position:relative;
+  }
+  @media (max-width:760px){ .circuit-cols{ grid-template-columns:1fr; } }
+
+  .col-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.1em;
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .col-label.build{ color:var(--cyan); }
+  .col-label.create{ color:var(--coral); }
+  .col-label .chip{ width:8px; height:8px; border-radius:50%; background:currentColor; box-shadow:0 0 10px currentColor; }
+
+  .node{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 18px;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:0.95rem;
+    font-weight:600;
+    transition: border-color .2s, background .2s, transform .2s;
+    position:relative;
+  }
+  .node:hover{ transform:translateX(6px); }
+  .node.build:hover{ border-color:var(--cyan); background:linear-gradient(90deg, var(--cyan-dim), transparent); }
+  .node.create:hover{ border-color:var(--coral); background:linear-gradient(90deg, var(--coral-dim), transparent); }
+  .node .level{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-dim);
+  }
+
+  .center-node{
+    position:absolute;
+    left:50%; top:50%;
+    transform:translate(-50%,-50%);
+    width:74px; height:74px;
+    border-radius:50%;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    color:var(--text-dim);
+    text-align:center;
+    line-height:1.2;
+    z-index:2;
+    box-shadow:0 0 0 8px var(--bg), 0 0 40px -10px rgba(94,234,212,0.25), 0 0 40px -10px rgba(255,138,101,0.2);
+  }
+  @media (max-width:760px){ .center-node{ display:none; } }
+
+  /* ---------- WORKS ---------- */
+  .works-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:24px;
+  }
+  .work-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition: border-color .2s, transform .2s;
+  }
+  .work-card:hover{ border-color:var(--cyan); transform:translateY(-4px); }
+  .work-thumb{
+    aspect-ratio:16/10;
+    background:var(--surface-2);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--text-dim);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    overflow:hidden;
+  }
+  .work-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .work-body{ padding:20px 22px 22px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .work-kind{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--coral);
+  }
+  .work-title{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.08rem; }
+  .work-desc{ color:var(--text-muted); font-size:0.9rem; flex:1; }
+  .work-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:2px; }
+  .work-tags .tag{ font-size:0.68rem; }
+  .work-link{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--cyan);
+    margin-top:4px;
+  }
+  .work-link:hover{ text-decoration:underline; }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{ position:relative; padding-left:32px; }
+  .timeline::before{
+    content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
+    background:var(--line);
+  }
+  .t-item{ position:relative; padding-bottom:40px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left:-32px; top:4px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--cyan);
+  }
+  .t-item.alt::before{ border-color:var(--coral); }
+  .t-date{ font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--text-dim); margin-bottom:6px; }
+  .t-title{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.15rem; margin-bottom:4px; }
+  .t-org{ color:var(--text-muted); font-size:0.92rem; }
+  .t-note{ color:var(--text-dim); font-size:0.88rem; margin-top:6px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:40px;
+    align-items:end;
+  }
+  @media (max-width:760px){ .contact-grid{ grid-template-columns:1fr; } }
+  .contact-big{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(1.8rem, 4.5vw, 3rem);
+    line-height:1.15;
+    margin-bottom:20px;
+  }
+  .contact-big .grad{
+    background: linear-gradient(95deg, var(--cyan), var(--coral));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .contact-list{ display:flex; flex-direction:column; gap:16px; }
+  .contact-row{
+    display:flex; align-items:center; gap:14px;
+    padding:16px 18px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    transition: border-color .2s;
+  }
+  .contact-row:hover{ border-color:var(--cyan); }
+  .contact-row .k{ font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--text-dim); min-width:70px; }
+  .contact-row .v{ font-size:0.95rem; font-weight:600; }
+
+  footer{
+    padding:32px;
+    text-align:center;
+    color:var(--text-dim);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo-chip"><span class="dot"></span>AKB<span style="color:var(--text-dim)">.dev</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#works">Works</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="terminal"><span class="prompt">guest@akb:~$</span>&nbsp;<span id="typed"></span><span class="caret"></span></div>
+    <h1 class="name">Arnold Kirk <span class="last">Bognot</span></h1>
+    <div class="role">IT Support <span class="sep">/</span> <span class="build">Technical</span> <span class="sep">&</span> <span class="create">Multimedia</span> Assistant</div>
+    <p class="lede">Computer Science undergraduate at City College of Angeles, wiring together networking fundamentals, hands-on programming, and a working creative practice in graphics, video, and photo editing.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="#skills">See what I do →</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">01 · About</div>
+      <h2 class="sec-title">Two disciplines, one workflow</h2>
+      <p class="sec-desc">Dependable, disciplined, and comfortable moving between a terminal and a timeline.</p>
+    </div>
+    <div class="about-panel reveal">
+      <div class="about-body">
+        <strong>Computer Science student</strong> with hands-on programming skills and practical experience in graphics design, video/photo editing, and networking fundamentals gained through the Cisco Networking Academy. Dependable and disciplined, with strong problem-solving and communication skills, and a proven track record of completing tasks on time — currently looking for a part-time role to put both the technical and creative skillset to work in a real environment.
+        <div class="tags">
+          <span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">C</span><span class="tag">Python</span>
+          <span class="tag">HTML / Bootstrap</span><span class="tag">XAMPP</span><span class="tag">Cisco Packet Tracer</span>
+          <span class="tag">Adobe Creative Tools</span><span class="tag">Figma</span><span class="tag">Canva</span>
+          <span class="tag">CapCut</span><span class="tag">Alight Motion</span><span class="tag">Google Workspace</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">02 · Skills</div>
+      <h2 class="sec-title">Build and create, side by side</h2>
+      <p class="sec-desc">A network engineer's habit of connecting things, applied to two very different toolsets.</p>
+    </div>
+    <div class="circuit-wrap reveal">
+      <div class="circuit-cols">
+        <div>
+          <div class="col-label build"><span class="chip"></span>BUILD</div>
+          <div class="node build"><span>Programming</span><span class="level">Java · JS · C · Python</span></div>
+          <div class="node build"><span>Networking Fundamentals</span><span class="level">Cisco Academy</span></div>
+          <div class="node build"><span>Problem Solving</span><span class="level">applied daily</span></div>
+          <div class="node build"><span>Discipline & Time Management</span><span class="level">on-time, every time</span></div>
+        </div>
+        <div>
+          <div class="col-label create"><span class="chip"></span>CREATE</div>
+          <div class="node create"><span>Graphics Design</span><span class="level">Figma · Canva</span></div>
+          <div class="node create"><span>Video Editing</span><span class="level">CapCut · Alight Motion</span></div>
+          <div class="node create"><span>Photo Editing</span><span class="level">Adobe · Picsart</span></div>
+          <div class="node create"><span>Communication</span><span class="level">clear & attentive</span></div>
+        </div>
+      </div>
+      <div class="center-node">LINK</div>
+    </div>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">03 · Works</div>
+      <h2 class="sec-title">Things I've made</h2>
+      <p class="sec-desc">A running collection of design, video, and dev work. More added as they're finished.</p>
+    </div>
+    <div class="works-grid reveal">
+
+
+      <div class="work-card">
+        <div class="work-thumb"><img src="graphics_thumb.webp" alt=""></div>
+        <div class="work-body">
+          <div class="work-kind">Graphic Design</div>
+          <div class="work-title">Collection of Graphics Designed</div>
+          <div class="work-desc"></div>
+          <div class="work-tags"><span class="tag">Figma</span><span class="tag">Canva</span></div>
+          <a class="work-link" href="https://drive.google.com/drive/folders/1IUwSxss6xUStCBCbcOxaFrb3oE9Q949U?usp=sharing" target="_blank">View project →</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-thumb"><img src="video_edit_thumb.webp" alt=""></div>
+        <div class="work-body">
+          <div class="work-kind">Video Edit</div>
+          <div class="work-title">Collection of Video Edits</div>
+          <div class="work-desc"></div>
+          <div class="work-tags"><span class="tag">CapCut</span></div>
+          <a class="work-link" href="https://drive.google.com/drive/folders/1fF96MA5qJKdEyAv-2diAZyNBFNjMRmIO?usp=sharing" target="_blank">Watch →</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-thumb"><img src="cert_thumb.jpeg" alt=""></div>
+        <div class="work-body">
+          <div class="work-kind">Certificates</div>
+          <div class="work-title">Collection of Certificates</div>
+          <div class="work-desc"></div>
+          <div class="work-tags"><span class="tag">Cisco</span></div>
+          <a class="work-link" href="https://docs.google.com/document/d/1yjO0kOfqCpYjUzGb0V7cFsYryjHs1QvG-fvjDV6UAPw/edit?tab=t.0" target="_blank">View Certificates →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">04 · Timeline</div>
+      <h2 class="sec-title">Training, certifications & education</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="t-item">
+        <div class="t-date">October 2025 – Present</div>
+        <div class="t-title">Creatives & Photojournalist</div>
+        <div class="t-org">ICSLIS Council — Student Council</div>
+      </div>
+      <div class="t-item alt">
+        <div class="t-date">2022 – 2023</div>
+        <div class="t-title">Immersion & Team Building</div>
+        <div class="t-org">Hilton Hotel — Clark Sun Valley Resort</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Certifications</div>
+        <div class="t-title">IT Essentials: PC Hardware and Software</div>
+        <div class="t-note">CCNAv7: Introduction to Networks · CCNA: Switching, Routing, and Wireless Essentials</div>
+      </div>
+      <div class="t-item alt">
+        <div class="t-date">August 2023 – May 2027</div>
+        <div class="t-title">Bachelor of Science in Computer Science</div>
+        <div class="t-org">City College of Angeles · 4th Year Undergraduate</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">August 2021 – June 2023</div>
+        <div class="t-title">Technical Vocational Livelihood (TVL)</div>
+        <div class="t-org">Sapang Bato National High School</div>
+        <div class="t-note">Graduated With High Honors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid reveal">
+      <div>
+        <div class="eyebrow">05 · Contact</div>
+        <div class="contact-big">Let's connect the <span class="grad">next</span> piece.</div>
+      </div>
+      <div class="contact-list">
+        <div class="contact-row"><span class="k">EMAIL</span><span class="v">arnoldbognot79@gmail.com</span></div>
+        <div class="contact-row"><span class="k">PHONE</span><span class="v">0965 910 6343</span></div>
+        <div class="contact-row"><span class="k">BASED IN</span><span class="v">Angeles City, Philippines</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Arnold Kirk Bognot — built with care.</footer>
+
+<script>
+  // Typing effect
+  const phrases = ["whoami", "cat about.txt", "connecting build + create..."];
+  const typedEl = document.getElementById('typed');
+  let pIndex = 0, cIndex = 0, deleting = false;
+
+  function tick(){
+    const current = phrases[pIndex];
+    if(!deleting){
+      cIndex++;
+      typedEl.textContent = current.slice(0, cIndex);
+      if(cIndex === current.length){ deleting = true; setTimeout(tick, 1400); return; }
+    } else {
+      cIndex--;
+      typedEl.textContent = current.slice(0, cIndex);
+      if(cIndex === 0){ deleting = false; pIndex = (pIndex + 1) % phrases.length; }
+    }
+    setTimeout(tick, deleting ? 40 : 70);
+  }
+  tick();
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
